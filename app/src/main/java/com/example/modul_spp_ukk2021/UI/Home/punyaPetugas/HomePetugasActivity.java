@@ -84,10 +84,54 @@ public class HomePetugasActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
-        logout.setOnClickListener(v -> {
-            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(HomePetugasActivity.this, logout, ViewCompat.getTransitionName(logout));
-            Intent intent = new Intent(HomePetugasActivity.this, LoginPetugasActivity.class);
-            startActivity(intent, options.toBundle());
+
+    SearchSiswa.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() >= 1) {
+                    recyclerView.setVisibility(View.GONE);
+                    String newText = s.toString().trim();
+
+                    Retrofit retrofit = new Retrofit.Builder()
+                            .baseUrl(url)
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+                    ApiEndPoints api = retrofit.create(ApiEndPoints.class);
+                    Call<SiswaRepository> call = api.searchDataSiswa(newText);
+                    call.enqueue(new Callback<SiswaRepository>() {
+                        @Override
+                        public void onResponse(Call<SiswaRepository> call, Response<SiswaRepository> response) {
+                            String value = response.body().getValue();
+                            List<Siswa> results = response.body().getResult();
+
+                            recyclerView.setVisibility(View.VISIBLE);
+                            if (value.equals("1")) {
+                                siswa = response.body().getResult();
+                                adapter = new HomePetugasAdapter(HomePetugasActivity.this, siswa);
+                                recyclerView.setAdapter(adapter);
+
+                                int i = results.size();
+//                                tagihan_count.setText("(" + String.valueOf(i) + ")");
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<SiswaRepository> call, Throwable t) {
+                            Log.e("DEBUG", "Error: ", t);
+                        }
+                    });
+                } else {
+                    loadDataSiswa();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
         });
     }
     @Override

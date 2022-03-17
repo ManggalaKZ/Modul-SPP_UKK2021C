@@ -46,7 +46,6 @@
                 app:strokeColor="#C62828" />
 
 
-
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView5"
         android:layout_width="340dp"
@@ -114,6 +113,31 @@
                 app:layout_constraintStart_toEndOf="@+id/textView14" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </com.google.android.material.card.MaterialCardView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView6"
+        android:layout_width="340dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView5"
+        app:layout_constraintVertical_bias="0.205">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerTagihan"
+            android:layout_width="match_parent"
+            android:layout_height="461dp"
+            android:nestedScrollingEnabled="false"
+            android:overScrollMode="never" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <!--        tools:listitem="@layout/ps_container_data_tagihan" -->
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

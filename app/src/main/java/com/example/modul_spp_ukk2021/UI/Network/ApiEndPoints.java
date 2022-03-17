@@ -38,6 +38,11 @@ public interface ApiEndPoints {
             @Field("nisn") String nisn);
 
     @FormUrlEncoded
+    @POST("dbSearchSiswa.php")
+    Call<SiswaRepository> searchDataSiswa(
+            @Field("search") String search);
+
+    @FormUrlEncoded
     @POST("dbReadPetugas.php")
     Call<PetugasRepository> viewDataPetugas(
             @Field("username") String username);
