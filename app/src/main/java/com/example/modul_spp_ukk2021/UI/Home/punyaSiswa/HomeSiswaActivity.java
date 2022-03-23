@@ -1,64 +1,44 @@
 package com.example.modul_spp_ukk2021.UI.Home.punyaSiswa;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ScrollView;
-import android.widget.Toast;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
 
 import com.example.modul_spp_ukk2021.R;
-import com.example.modul_spp_ukk2021.UI.Home.punyaPetugas.HomePetugasAdapter;
-import com.example.modul_spp_ukk2021.UI.Splash.LoginChoiceActivity;
-import com.google.android.material.button.MaterialButton;
+import com.example.modul_spp_ukk2021.UI.ChatsFragment;
+import com.example.modul_spp_ukk2021.UI.StatusFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
-import java.util.ArrayList;
-
-public class HomeSiswaActivity extends AppCompatActivity implements HomeSiswaAdapter.ItemClickListener {
-    HomeSiswaAdapter adapter;
-
+public class HomeSiswaActivity extends AppCompatActivity {
+    BottomNavigationView bottomNavigation;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_siswa);
+        setContentView(R.layout.activity_main);
 
-        // data to populate the RecyclerView with
-        ArrayList<String> animalNames = new ArrayList<>();
-        animalNames.add("Gregorius Devon");
-        animalNames.add("Gregorius Devon");
-        animalNames.add("Gregorius Devon");
-        animalNames.add("Gregorius Devon");
-
-        // set up the RecyclerView
-        RecyclerView recyclerView = findViewById(R.id.recyclerHomeSiswa);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new HomeSiswaAdapter(this, animalNames);
-        adapter.setClickListener(this);
-        recyclerView.setAdapter(adapter);
-
-        ScrollView scrollView = findViewById(R.id.scroll_homesiswa);
-        scrollView.post(new Runnable() {
+        bottomNavigation = findViewById(R.id.bottom_navigation);
+        bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener(){
             @Override
-            public void run() {
-                scrollView.scrollTo(0, 0);
-            }
-        });
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment selectedFragment = null;
 
-        MaterialButton logoutPetugas = findViewById(R.id.logoutSiswa);
-        logoutPetugas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeSiswaActivity.this, LoginChoiceActivity.class);
-                startActivity(intent);
+                switch (item.getItemId()){
+                    case R.id.nav_chats:
+                        selectedFragment = new ChatsFragment();
+                        break;
+                    case R.id.nav_status:
+                        selectedFragment = new StatusFragment();
+                        break;
+                }
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                return true;
             }
         });
     }
 
-    @Override
-    public void onItemClick(View view, int position) {
-        Toast.makeText(this, "You clicked " + adapter.getItem(position), Toast.LENGTH_SHORT).show();
-    }
 }

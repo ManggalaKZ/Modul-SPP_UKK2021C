@@ -107,7 +107,7 @@ public class LoginSiswaActivity extends AppCompatActivity {
                 String value = response.body().getValue();
 
                 if (value.equals("1")) {
-                    Intent intent = new Intent(LoginSiswaActivity.this, MainActivity.class);
+                    Intent intent = new Intent(LoginSiswaActivity.this, HomeSiswaActivity.class);
                     intent.putExtra("nisnSiswa", nisn);
                     startActivity(intent);
                     finish();

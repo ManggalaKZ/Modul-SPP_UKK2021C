@@ -38,9 +38,20 @@ public interface ApiEndPoints {
             @Field("nisn") String nisn);
 
     @FormUrlEncoded
+    @POST("dbUpdatePembayaran.php")
+    Call<PembayaranRepository> updatePembayaran(
+            @Field("id_pembayaran") String id_pembayaran,
+            @Field("jumlah_bayar") String jumlah_bayar);
+
+    @FormUrlEncoded
     @POST("dbSearchSiswa.php")
     Call<SiswaRepository> searchDataSiswa(
             @Field("search") String search);
+
+    @FormUrlEncoded
+    @POST("dbReadPembayaran.php")
+    Call<PembayaranRepository> viewPembayaran(
+            @Field("nisn") String nisn);
 
     @FormUrlEncoded
     @POST("dbReadPetugas.php")

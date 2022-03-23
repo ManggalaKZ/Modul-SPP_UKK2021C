@@ -34,13 +34,29 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="84dp"
             android:fontFamily="@font/poppins"
             android:text="XII RPL 3"
             android:textColor="#C62828"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/namaSiswa" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/detailSiswa"
+            android:layout_width="58dp"
+            android:layout_height="56dp"
+            android:background="@drawable/gradient_button1"
+            app:backgroundTint="@null"
+            app:icon="@drawable/ic_play"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.384"
+            app:layout_constraintStart_toEndOf="@+id/textView3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.444" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

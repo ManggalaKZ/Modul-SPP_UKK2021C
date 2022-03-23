@@ -1,57 +1,33 @@
 package com.example.modul_spp_ukk2021.UI.Home.punyaPetugas;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
-import static com.example.modul_spp_ukk2021.UI.Network.baseURL.url;
-
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.modul_spp_ukk2021.R;
-import com.example.modul_spp_ukk2021.UI.Data.Model.LoginStaf;
-import com.example.modul_spp_ukk2021.UI.Data.Repository.LoginStafRepository;
-import com.example.modul_spp_ukk2021.UI.Home.punyaAdmin.HomeAdminFragment;
-import com.example.modul_spp_ukk2021.UI.Network.ApiEndPoints;
-import com.example.modul_spp_ukk2021.UI.Splash.LoginChoiceActivity;
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.textfield.TextInputLayout;
-import static com.example.modul_spp_ukk2021.UI.Network.baseURL.url;
-
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.view.View;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.core.view.ViewCompat;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.modul_spp_ukk2021.R;
+import com.example.modul_spp_ukk2021.UI.Data.Helper.DrawerAdapter;
+import com.example.modul_spp_ukk2021.UI.Data.Helper.SpaceItem;
 import com.example.modul_spp_ukk2021.UI.Data.Model.Petugas;
 import com.example.modul_spp_ukk2021.UI.Data.Model.Siswa;
 import com.example.modul_spp_ukk2021.UI.Data.Repository.PetugasRepository;
 import com.example.modul_spp_ukk2021.UI.Data.Repository.SiswaRepository;
 import com.example.modul_spp_ukk2021.UI.Network.ApiEndPoints;
-import com.google.android.material.button.MaterialButton;
+import com.example.modul_spp_ukk2021.UI.Splash.LoginChoiceActivity;
+
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
@@ -60,9 +36,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.example.modul_spp_ukk2021.UI.Network.baseURL.url;
+
 
 public class HomePetugasActivity extends AppCompatActivity {
-    private MaterialButton logout;
+
+    private static final int POS_LOGOUT = 2;
+
     private RecyclerView recyclerView;
     private HomePetugasAdapter adapter;
     private TextView tagihan_count, nama, level;
@@ -73,7 +53,7 @@ public class HomePetugasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_home_petugas);
 
-        logout = findViewById(R.id.logoutPetugas);
+//        logout = findViewById(R.id.logoutPetugas);
         nama = findViewById(R.id.textView);
         EditText SearchSiswa = findViewById(R.id.searchSiswa);
 
@@ -140,6 +120,7 @@ public class HomePetugasActivity extends AppCompatActivity {
         loadDataPetugas();
         loadDataSiswa();
     }
+
 
     private void loadDataPetugas() {
         String username = getIntent().getStringExtra("username");
