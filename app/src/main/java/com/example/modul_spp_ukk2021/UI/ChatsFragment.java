@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.modul_spp_ukk2021.R;
 import com.example.modul_spp_ukk2021.UI.Data.Model.Pembayaran;
@@ -48,6 +49,7 @@ public class ChatsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private TextView nominal;
 
     public ChatsFragment() {
         // Required empty public constructor
@@ -92,8 +94,11 @@ public class ChatsFragment extends Fragment {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
+
+        nominal = view.findViewById(R.id.nominal);
         return view;
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -126,20 +131,16 @@ public class ChatsFragment extends Fragment {
                     for (i = 0; i < results.size(); i++) {
                         int total_Kurang = results.get(i).getKurang_bayar();
                         int belum_Bayar = results.get(i).getNominal();
-//                        nama.setText(results.get(i).getNama());
-//                        kelas.setText("Siswa " + results.get(i).getNama_kelas());
 
                         if (results.get(i).getKurang_bayar() == 0) {
                             total_sum += belum_Bayar;
                         }
                         total_sum += total_Kurang;
                     }
-
                     Locale localeID = new Locale("in", "ID");
                     NumberFormat format = NumberFormat.getCurrencyInstance(localeID);
                     format.setMaximumFractionDigits(0);
-//                    nominal.setText(format.format(total_sum) + ",00");
-//                    tagihan_count.setText("(" + String.valueOf(i) + ")");
+                    nominal.setText(format.format(total_sum) + ",00");
                 }
             }
 
