@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#00FFFFFF"
+    android:backgroundTint="#008A2121"
     tools:context=".UI.StatusFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -28,15 +29,16 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerHistory"
-        android:layout_width="333dp"
-        android:layout_height="536dp"
+        android:layout_width="312dp"
+        android:layout_height="636dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
+        android:background="#FFFFFF"
         android:nestedScrollingEnabled="false"
         android:overScrollMode="never"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView1"
         tools:listitem="@layout/container_data_tagihan" />
 </androidx.constraintlayout.widget.ConstraintLayout>

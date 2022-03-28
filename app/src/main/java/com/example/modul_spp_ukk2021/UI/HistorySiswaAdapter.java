@@ -50,7 +50,6 @@ public class HistorySiswaAdapter extends RecyclerView.Adapter<HistorySiswaAdapte
         holder.tvBulan.setText(monthNames[pembayaran.getBulan_bayar() - 1]);
 
         holder.tvNominal.setText("+" + format.format(pembayaran.getNominal()));
-        holder.materialCardView.setCardBackgroundColor(ColorStateList.valueOf(Color.parseColor("#2EDCB5")));
 
         if (pembayaran.getTgl_bayar() != null) {
             SimpleDateFormat simpleDate = new SimpleDateFormat("dd/MM/yyyy", localeID);
