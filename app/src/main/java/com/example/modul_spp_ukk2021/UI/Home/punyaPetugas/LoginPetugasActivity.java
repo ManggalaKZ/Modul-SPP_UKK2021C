@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.modul_spp_ukk2021.R;
 import com.example.modul_spp_ukk2021.UI.Data.Model.LoginStaf;
 import com.example.modul_spp_ukk2021.UI.Data.Repository.LoginStafRepository;
-import com.example.modul_spp_ukk2021.UI.Home.punyaAdmin.HomeAdminFragment;
+import com.example.modul_spp_ukk2021.UI.Home.punyaAdmin.HomeAdminActivity;
 import com.example.modul_spp_ukk2021.UI.Network.ApiEndPoints;
 import com.example.modul_spp_ukk2021.UI.Splash.LoginChoiceActivity;
 import com.google.android.material.button.MaterialButton;
@@ -125,7 +125,7 @@ public class LoginPetugasActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     } else if (value.equals("1") && level.equals("Admin")) {
-                        Intent intent = new Intent(LoginPetugasActivity.this, HomeAdminFragment.class);
+                        Intent intent = new Intent(LoginPetugasActivity.this, HomeAdminActivity.class);
                         intent.putExtra("username", username);
                         startActivity(intent);
                         finish();

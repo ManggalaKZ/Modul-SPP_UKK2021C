@@ -2,52 +2,70 @@ package com.example.modul_spp_ukk2021.UI.Splash;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.os.Handler;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.view.ViewCompat;
 
 import com.example.modul_spp_ukk2021.R;
-import com.example.modul_spp_ukk2021.UI.Home.punyaAdmin.LoginAdminActivity;
 import com.example.modul_spp_ukk2021.UI.Home.punyaPetugas.LoginPetugasActivity;
 import com.example.modul_spp_ukk2021.UI.Home.punyaSiswa.LoginSiswaActivity;
-import com.google.android.material.button.MaterialButton;
+import com.github.captain_miao.optroundcardview.OptRoundCardView;
 
 public class LoginChoiceActivity extends AppCompatActivity {
+    private boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_login_choice);
+        OptRoundCardView card = findViewById(R.id.card);
+        TextView btnLoginSiswa = findViewById(R.id.btn_siswa);
+        TextView btnLoginPetugas = findViewById(R.id.btn_petugas);
 
-        MaterialButton btnLoginAdmin = findViewById(R.id.btn_admin);
-        MaterialButton btnLoginPetugas = findViewById(R.id.btn_petugas);
-        MaterialButton btnLoginSiswa = findViewById(R.id.btn_siswa);
+//        ScaleAnimation scaleAnim = new ScaleAnimation(
+//                1f, 1f,
+//                0f, 1f,
+//                Animation.ABSOLUTE, 0,
+//                Animation.RELATIVE_TO_SELF, 1);
+//        scaleAnim.setDuration(500);
+//        scaleAnim.setRepeatCount(0);
+//        scaleAnim.setInterpolator(new AccelerateDecelerateInterpolator());
+//        scaleAnim.setFillAfter(true);
+//        scaleAnim.setFillBefore(false);
+//        scaleAnim.setFillEnabled(true);
+//        card.startAnimation(scaleAnim);
 
-        btnLoginSiswa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginChoiceActivity.this, LoginSiswaActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        btnLoginSiswa.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginChoiceActivity.this, LoginSiswaActivity.class);
+            startActivity(intent);
         });
 
-        btnLoginPetugas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginChoiceActivity.this, LoginPetugasActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        btnLoginAdmin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginChoiceActivity.this, LoginAdminActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        btnLoginPetugas.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginChoiceActivity.this, LoginPetugasActivity.class);
+            startActivity(intent);
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            finishAffinity();
+            return;
+        }
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Tekan tombol kembali lagi untuk keluar", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
+    }
 }
+

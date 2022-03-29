@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#C62828</color>
-    <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#420707</color>
-
+    <color name="colorPrimary">#e3262c</color>
+    <color name="colorPrimaryDark">#b72023</color>
+    <color name="colorAccent">#888988</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="cyan">#2EDCB5</color>
+
+    <color name="lunas">#41E46F</color>
+    <color name="kurang">#FFC700</color>
+    <color name="belum">#e3262c</color>
+
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorSuccess">#41E46F</color>
+    <color name="colorWarning">#FFC700</color>
+    <color name="colorNeutral">#606161</color>
+    <color name="colorError">#e3262c</color>
+    <color name="colorTextPrimary">#212121</color>
+
+    <color name="material_grey">#33303030</color>
 </resources>
